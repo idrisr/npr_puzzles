@@ -31,7 +31,7 @@ for i in range(0, len(s)):
             swap_word = swap_letter(s, s[i], j) 
             l_words.append( swap_word )
 
-#tests all permutations and checks if permutation of string is in dictionary and prints and finds
+#tests all permutations and checks if permutation of string is in dictionary and prints any finds
 for i in l_words:
     l_perm = permutate(i)
     s_perm = set(l_perm)

@@ -26,7 +26,7 @@ def permutate(seq):
                 temp.append(x)
         return temp
 
-def load_word_dictionary(path='/home/idris/word_lists/CROSSWD.TXT'):
+def load_word_dictionary(path='word_lists/CROSSWD.TXT'):
     """takes "path" that is path of word list file. Function assumes one word per line.
     White space and capitalization stripped out.  returns dictionary of words with key=word, and value=None"""
     f = open(path, 'r')

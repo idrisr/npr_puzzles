@@ -1,6 +1,13 @@
 # Contains common utility functions used to solve NPR word puzzles
 from nltk.corpus import wordnet as wn
 
+def sort_word(word):
+    """sorts word and removes white spaces"""
+    l = [letter for letter in word]
+    l.sort(reverse=False)
+    sort_word = ''.join([letter for letter in l])
+    return sort_word
+
 def swap_letter(s, letter, index):
     """takes a string 's' and replaces s['index'] with 'letter"""
     s = s[:index] + letter + s[index+1:]

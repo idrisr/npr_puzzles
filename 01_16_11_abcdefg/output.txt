@@ -1,0 +1,2 @@
+Original String:	abedefg
+Rearranged String:	feedbag

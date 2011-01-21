@@ -1,6 +1,24 @@
 # Contains common utility functions used to solve NPR word puzzles
 from nltk.corpus import wordnet as wn
 
+def swap_letter(s, letter, index):
+    """takes a string 's' and replaces s['index'] with 'letter"""
+    s = s[:index] + letter + s[index+1:]
+    return s
+
+def permutate(seq):
+    """permutate a sequence and return a list of the permutations"""
+    if not seq:
+        return [seq]  # is an empty sequence
+    else:
+        temp = []
+        for k in range(len(seq)):
+            part = seq[:k] + seq[k+1:]
+            for m in permutate(part):
+                x=seq[k:k+1] + m
+                temp.append(x)
+        return temp
+
 def load_word_dictionary(path='/home/idris/word_lists/CROSSWD.TXT'):
     """takes "path" that is path of word list file. Function assumes one word per line.
     White space and capitalization stripped out.  returns dictionary of words with key=word, and value=None"""

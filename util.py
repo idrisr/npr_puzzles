@@ -13,8 +13,20 @@ def swap_letter(s, letter, index):
     s = s[:index] + letter + s[index+1:]
     return s
 
+def has_string(big_word, small_word):
+    """returns boolean of whether small_word contained in big_word"""
+    return -1<>big_word.find(small_word)
+
+def is_len(_iter, length):
+    """return boolean of whether '_iter' is lenght of 'length'"""
+    return len(_iter)==length
+
 def permutate(seq):
     """permutate a sequence and return a list of the permutations"""
+
+    # To Do: create another version which only returns perms that are in dictioary
+
+    # To Do: Change to return a unique list of perms
     if not seq:
         return [seq]  # is an empty sequence
     else:
@@ -26,7 +38,7 @@ def permutate(seq):
                 temp.append(x)
         return temp
 
-def load_word_dictionary(path='word_lists/CROSSWD.TXT'):
+def load_word_dictionary(path='/home/idris/work/npr_puzzles/word_lists/CROSSWD.TXT'):
     """takes "path" that is path of word list file. Function assumes one word per line.
     White space and capitalization stripped out.  returns dictionary of words with key=word, and value=None"""
     f = open(path, 'r')

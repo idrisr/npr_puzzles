@@ -1,0 +1,35 @@
+This week's puzzle was a fun one. There are several parts to this puzzle and it's easiest to tackle each one individually.
+
+1) Think of a famous American whose last name is seven letters long. 
+    This part is very broad, and there are possibly thousands or tens of thousands of names that can fit this description. My brain certainly can't easily categorize people into groups based on length of last name.  
+
+2) Take his / her last name, and move the last two letters in front of the first four letters and you have the person's profession. 
+
+Again, moving the letters is difficult for my brain, and I couldn't think of an easy way of doing this part in reverse: thinking of a profession, and then forming the last name to see if it matches a known famous American.
+
+So, of course and as usual, I'll use Python, Wikipedia, and an English word list to solve this puzzle.
+
+Step 1 - We're looking for a famous American, and therefore someone whose name is in Wikipedia. I assume that if you don't have an English Wikipedia entry, you aren't a famous American. In our Wikipedia list, underscores replaced spaces, into the form firstname_lastname. I ignore all entries that don't have at least one underscore, as the entry is unlikely to be a name.
+
+Next, I test the last word in the entry to see if it has seven letters. It's possible that a name like John F. Kennedy, Jr. would be incorrectly eliminated because of the suffix Jr., but I choose to ignore such edge cases for now. If our method doesn't yield a solution, we can go back and possibly make this refinement. 
+
+Next, I test to see that all characters in the last name are ASCII characters. Wikipedia entries can have grammar marks, numbers, foreign characters, Unicode characters, etc., all of which are unlikely to be contained in the last name of a famous American. Again, this assumption can be modified if this approach doesn't yield a solution.
+
+Step 2 - Once we have a list of Wikipedia entries that look like names and have the correct last name length, we are ready to see if moving the letters around in the last name return a profession. I don't have a list of professions, but I do have a list of all words in the English dictionary. This list from [[WordNet]] is specifically called the crossword dictionary as it is all valid entries in English crosswords. There are about 110,000 words in this list and I assume that the list of professions is a subset of this dictionary. 
+
+With that assumption, I can move the letters around in the last name and see if it is in the dictionary. If yes, I output the word from the dictionary, the last name, and the original Wikipedia entry onto one line in the output file.
+
+Running Step 1 and Step 2 takes approximately 40 seconds. Now I need to manually scan the list of 1,507 entries and see if I can find a profession.
+
+The file is unsorted, which I could fix in Python but instead I'll quickly run the command line function sort and do "sort -o output.txt output_sort.txt" which sorts output.txt by the first letter in the line and puts the result in output_sort.txt.
+
+Scanning through the list, we quickly get lucky and see several lines which found 'author' as the word in the dictionary. There are several Wikipedia entries that are variations on the name Henry David Thoreau, certainly a famous American and a likely answer for an NPR contest. 
+
+This solution required a few assumptions, and some a priori knowledge such as a general knowledge of professions and famous Americans, but otherwise everything else was outsourced to the computer and Wikipedia.
+
+Looking forward to next week's puzzle which looks like a lot of fun, as we'll have to find a way to find a two-word synonym for a single word, which will require a thesaurus and possibly more.
+
+
+
+
+

@@ -1,0 +1,17 @@
+From Ward Hartenstein of Rochester, N.Y.: Rearrange the letters of "Wayne Manor" to name two well-known American corporations, past or present. What corporations are they?
+
+It is fairly easy to use a brute force approach to calculate all possible arrangements anagrams of a relatively short string. For example, using the function [[permutations]], we can use recursion to create all possible variations of a string. The maximum number of anagrams for a string is n!, where n is the number of characters. If there are any character duplicates, or restrictions, such as not being able to have a space at the beginning or end of the word, we have fewer anagram possibilities.
+
+For "Wayne Manor", ignoring the space for now, we have 10 characters which give 10! = 3,628,800 possible combinations. By using the python module cProfile, we can measure how long it takes to calculate a brute force approach to finding all anagrams of a string of length n. The time to calculate all anagram possibilities for a 10 character string is less than a minute; 12 characters would be more like 40 minutes. Our string is 10 characters, so we're in luck.
+
+We can see that the time to calculate all anagrams starts to get large, but for "Wayne Manor" it is acceptable to use this inelegant brute-force approach. Additionally, because there are character repeats in our string, two a's and two n's, the number of unique anagrams is reduced from 10! to 10!/(2!2!) = 907,200
+
+Now that we have the full 907,200 possible arrangements, we need to think about how many ways we can split the string into different two-word combinations. Since we need two company names, I will make the assumption that each will be at least 3 characters long. Therefore we can split the string with a space anywhere between the 3rd and 7th position. Therefore we have 5 spots to put the space and 907,200 * 5 = 4,536,000 different two word combinations to check.
+
+Now the obvious question - how do we possibly check 4.5 million possible answers? This is where a wikipedia article title dump comes in handy. You can download the article title dump [[here]], which contains over 7,000,000 article titles. Since we are dealing with American corporation names which are ostensibly well-known, I'll assume that the correct answers have their own Wikipedia entries and can be found amongst the 7,000,000 entries. 
+
+We can then load all of the Wikipedia titles into a python dictionary, and then check to see if any of the two word combinations show up in Wikipedia. There are 4,250 anagrams of "Wayne Manor" that are made up of two words with both words present as Wikipedia article titles. At this point, we have a more manageable, if not enviable, task of manually scanning the 4,250 entries for two company names.
+
+Again, I will assume that the company names will be easily apparent to me. After scrolling through for a few seconds, I see "Enron" as a clear possibility, and it is paired with the words amway, mwaya, ymawa, manwa, mawan, namaw, and waman. Amway looks the most promising, and after a quick search we confirm that it is indeed an American corporation.
+
+While certainly not elegant, efficient, entirely reproducible without a priori knowledge, or void of significant human intervention, the solution works. Good enuf ;>
